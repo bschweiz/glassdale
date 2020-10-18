@@ -1,26 +1,26 @@
-import { CriminalCardHTML } from "./Criminal.js"
+import { OfficerCardHTML } from "./Officer.js"
 
-import { getCriminals, useCriminals } from './CriminalProvider.js'
-// getCriminals fetches the API, useCriminals makes a slice replica
+import { getOfficers, useOfficers } from './OfficerProvider.js'
+// getOfficers fetches the API, useOfficers makes a slice replica
 
 
 // creating a container and tying it to a class on the "document"
-const criminalsContainer = document.querySelector(".criminalsContainer");
+const officersContainer = document.querySelector(".officersContainer");
 
-export const CriminalList = () => {
+export const OfficerList = () => {
     // promise zone starts here
-    getCriminals().then(() => {
+    getOfficers().then(() => {
         
         // promise fullfilled and stored to a "static" variable
         
         let HTMLToInsert = "";
-        const arrayToUse = useCriminals();
-        for (const criminalObj of arrayToUse) {
+        const arrayToUse = useOfficers();
+        for (const officerObj of arrayToUse) {
             
-            HTMLToInsert += CriminalCardHTML(criminalObj)
+            HTMLToInsert += OfficerCardHTML(officerObj)
         }
-        criminalsContainer.innerHTML = 
-        `<h1> CRIMINALS </h1>
+        officersContainer.innerHTML = 
+        `<h1> OFFICERS OF GLASSDALE POLICE DEPARTMENT </h1>
         </br>
         <p>
         ${HTMLToInsert}
