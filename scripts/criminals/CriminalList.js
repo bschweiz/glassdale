@@ -1,7 +1,13 @@
+import { CriminalCardHTML } from "./Criminal.js"
+
 import { getCriminals, useCriminals } from './CriminalProvider.js'
-const criminalsContainer = document.querySelector(".criminalsContainer")
+// getCriminals fetches the API, useCriminals makes a slice replica
+
+
+// creating a container and tying it to a class on the "document"
 
 export const CriminalList = () => {
+    const criminalsContainer = document.querySelector(".criminalsContainer");
     // promise zone starts here
     getCriminals().then(() => {
         
@@ -11,11 +17,14 @@ export const CriminalList = () => {
         const arrayToUse = useCriminals();
         for (const criminalObj of arrayToUse) {
             
-            HTMLToInsert += ``
+            HTMLToInsert += CriminalCardHTML(criminalObj)
         }
+        criminalsContainer.innerHTML = HTMLToInsert; 
         return HTMLToInsert
-    })       
+    }) 
 }
+
+
 
 // ----annotated code from Scott:
 // import { getCriminals, useCriminals } from './CriminalProvider.js'
