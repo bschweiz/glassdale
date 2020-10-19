@@ -15,4 +15,6 @@ CriminalList();
 OfficerList();
 let test = useConvictions();
 console.log(test);
+let test2 = GetConvictions();
+console.log(test2);
 ConvictionSelect();
