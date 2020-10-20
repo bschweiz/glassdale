@@ -5,6 +5,7 @@
     
     export const useConvictions = () => {
       return convictions.slice()
+      
     }
     // generates an array that will be used over on ConvictionSelect.js
     // useConvictions cannot work without getConvictions, is it ASYNCHRONOUS?

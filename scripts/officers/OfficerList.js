@@ -18,15 +18,15 @@ export const OfficerList = () => {
         for (const officerObj of arrayToUse) {
             
             HTMLToInsert += OfficerCardHTML(officerObj)
+            officersContainer.innerHTML = 
+            `<h1> OFFICERS OF GLASSDALE POLICE DEPARTMENT </h1>
+            </br>
+            <p>
+            ${HTMLToInsert}
+            </p>`
+            // HTMLToInsert; 
+            // return HTMLToInsert
         }
-        officersContainer.innerHTML = 
-        `<h1> OFFICERS OF GLASSDALE POLICE DEPARTMENT </h1>
-        </br>
-        <p>
-        ${HTMLToInsert}
-        </p>`
-        // HTMLToInsert; 
-        return HTMLToInsert
     }) 
 }
 

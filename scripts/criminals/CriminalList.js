@@ -18,15 +18,15 @@ export const CriminalList = () => {
         for (const criminalObj of arrayToUse) {
             
             HTMLToInsert += CriminalCardHTML(criminalObj)
+            criminalsContainer.innerHTML = 
+            `<h1> CRIMINALS </h1>
+            </br>
+            <p>
+            ${HTMLToInsert}
+            </p>`
+            // HTMLToInsert; 
+            // return HTMLToInsert
         }
-        criminalsContainer.innerHTML = 
-        `<h1> CRIMINALS </h1>
-        </br>
-        <p>
-        ${HTMLToInsert}
-        </p>`
-        // HTMLToInsert; 
-        return HTMLToInsert
     }) 
 }
 
