@@ -32,7 +32,7 @@ eventHub.addEventListener("change", changeEvent => {
         // Define a custom event
         const customEvent = new CustomEvent("officerSelected", {
             detail: {
-                officer: selectedOfficer
+                officerName: selectedOfficer
             }
         })
         console.log(customEvent)

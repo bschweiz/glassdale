@@ -52,3 +52,25 @@ eventHub.addEventListener("crimeSelected", event => {
         render(filteredCriminalsArray)
     }
 })
+
+eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
+    // if (changeEvent.target.id === "officerSelected") {
+    //     // Get the name of the selected officer
+        const selectedOfficerName = officerSelectedEventObj.detail.officerName;
+        console.log("officer array test", selectedOfficerName)
+
+        const criminalsArray = useCriminals();
+        console.log("criminals array test", criminalsArray)
+
+
+        // Define a custom event
+        // const customEvent = new CustomEvent("officerSelected", {
+        //     detail: {
+        //         officer: selectedOfficer
+        //     }
+        // })
+        // console.log(customEvent)
+        // // Dispatch event to event hub
+        // eventHub.dispatchEvent(customEvent)
+    }
+)
