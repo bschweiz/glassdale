@@ -1,58 +1,54 @@
-import { CriminalCardHTML } from "./Criminal.js"
-
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 // getCriminals fetches the API, useCriminals makes a slice replica
+import { CriminalCardHTML } from "./Criminal.js"
+import { useConvictions } from "../convictions/ConvictionProvider.js"
 
 
-// creating a container and tying it to a class on the "document"
+const eventHub = document.querySelector(".container")
 const criminalsContainer = document.querySelector(".criminalsContainer");
+// creating a container and tying it to a class on the "document"
 
-export const CriminalList = () => {
-    // promise zone starts here
-    getCriminals().then(() => {
-        
-        // promise fullfilled and stored to a "static" variable
-        
-        let HTMLToInsert = "";
-        const arrayToUse = useCriminals();
-        for (const criminalObj of arrayToUse) {
-            
-            HTMLToInsert += CriminalCardHTML(criminalObj)
-            criminalsContainer.innerHTML = 
-            `<h1> CRIMINALS </h1>
-            </br>
-            <p>
-            ${HTMLToInsert}
-            </p>`
-            // HTMLToInsert; 
-            // return HTMLToInsert
-        }
+export const CriminalList = () => {    
+
+    getCriminals()
+        .then(() => {
+            const arrayFromUseCriminals = useCriminals();
+            // promise fullfilled and stored to a "static" variable
+            // try to implement .map() below?
+            render(arrayFromUseCriminals) 
     }) 
 }
 
+const render = (criminalsArray) => {
+    let criminalsHTMLRepresentations = ""
+    for (const criminal of criminalsArray) {
+  
+      criminalsHTMLRepresentations += CriminalCardHTML(criminal)
+  
+      criminalsContainer.innerHTML = `
+            <h1>CRIMINALS OF GLASSDALE</h>
+            <section class="criminalsList">
+              ${criminalsHTMLRepresentations}
+            </section>
+          `
+    }
+  }
 
-
-// ----annotated code from Scott:
-// import { getCriminals, useCriminals } from './CriminalProvider.js'
-// const criminalsContainer = document.querySelector(".criminalsContainer")
-// export const CriminalList = () => {
-//     // promise zone starts here
-//     getCriminals().then(() => {
-//         // promise fullfilled and stored to a "static" variable
-//         const arrayToUse = useCriminals();
-//         let HTMLToInsert = "";
-//         for (const criminalObj of arrayToUse) {
-//             HTMLToInsert += `<section class="criminal" id="criminal--${criminalObj.id}">
-//             <h2 class="criminal__name">${criminalObj.name}</h2>
-//             <div class="criminal__properties">
-//             <p>Age: ${criminalObj.age}</p>
-//             <p>Crime: ${criminalObj.conviction}</p>
-//             <p>Term start: ${criminalObj.incarceration.start}</p>
-//             <p>Term end: ${criminalObj.incarceration.start}</p>
-//             </div>
-//             </section>`
-//         }
-//         criminalsContainer.innerHTML = HTMLToInsert
-//         return HTMLToInsert
-//     })
-// }
+eventHub.addEventListener("crimeSelected", event => {
+    if (event.detail.crimeThatWasChosen !==0) {
+        const criminalsArray = useCriminals();
+        const convictionsArray = useConvictions();
+        const convictionThatWasChosen = convictionsArray.find(convictionObj => {
+            return convictionObj.id === event.detail.crimeThatWasChosen
+        })
+        // console.log(criminalsArray)
+        // console.log(convictionsArray)
+        console.log(convictionThatWasChosen)
+        const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
+            return criminalObj.conviction === convictionThatWasChosen.name
+        })
+        // debugger
+        
+        render(filteredCriminalsArray)
+    }
+})

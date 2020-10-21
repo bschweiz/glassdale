@@ -9,50 +9,28 @@ const officersContainer = document.querySelector(".officersContainer");
 
 export const OfficerList = () => {
     // promise zone starts here
-    getOfficers().then(() => {
-        
-        // promise fullfilled and stored to a "static" variable
-        
-        let HTMLToInsert = "";
-        const arrayToUse = useOfficers();
-        for (const officerObj of arrayToUse) {
-            
-            HTMLToInsert += OfficerCardHTML(officerObj)
-            officersContainer.innerHTML = 
-            `<h1> OFFICERS OF GLASSDALE POLICE DEPARTMENT </h1>
-            </br>
-            <p>
-            ${HTMLToInsert}
-            </p>`
-            // HTMLToInsert; 
-            // return HTMLToInsert
-        }
-    }) 
+    getOfficers()
+        .then(() => {
+            const arrayFromUseOfficers = useOfficers();
+            // promise fullfilled and stored to a "static" variable
+            // try to implement .map() below?
+            render(arrayFromUseOfficers) 
+        }) 
 }
 
+const render = (officersArray) => {
+    let officersHTMLRepresentations = ""
+    for (const officer of officersArray) {
+  
+      officersHTMLRepresentations += OfficerCardHTML(officer)
+  
+      officersContainer.innerHTML = `
+            <h1>OFFICERS OF GLASSDALE</h1>
+            <section class="officersList">
+              ${officersHTMLRepresentations}
+            </section>
+          `
+    }
+  }
 
 
-// ----annotated code from Scott:
-// import { getCriminals, useCriminals } from './CriminalProvider.js'
-// const criminalsContainer = document.querySelector(".criminalsContainer")
-// export const CriminalList = () => {
-//     // promise zone starts here
-//     getCriminals().then(() => {
-//         // promise fullfilled and stored to a "static" variable
-//         const arrayToUse = useCriminals();
-//         let HTMLToInsert = "";
-//         for (const criminalObj of arrayToUse) {
-//             HTMLToInsert += `<section class="criminal" id="criminal--${criminalObj.id}">
-//             <h2 class="criminal__name">${criminalObj.name}</h2>
-//             <div class="criminal__properties">
-//             <p>Age: ${criminalObj.age}</p>
-//             <p>Crime: ${criminalObj.conviction}</p>
-//             <p>Term start: ${criminalObj.incarceration.start}</p>
-//             <p>Term end: ${criminalObj.incarceration.start}</p>
-//             </div>
-//             </section>`
-//         }
-//         criminalsContainer.innerHTML = HTMLToInsert
-//         return HTMLToInsert
-//     })
-// }

@@ -1,4 +1,11 @@
+textarea,
 body {
+    color: #404040;
+	font-family: "Comfortaa", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	background-color: #404040;
+	/* text-align: center; */
     display: flex;
     flex-wrap: wrap;
 }
@@ -16,26 +23,21 @@ h1 {
     flex-wrap: wrap;
 }
 
-section {
-    wrap: wrap
+.criminalsList,
+.officersList { 
+    display: flex;
+    flex-wrap: wrap
 }
-
-.container {
-    /* display: flex; */
-}
-/* #criminalCards{
-    
-    
-} */
 
 .criminal ,
 .officer {
-    flex-basis: 25%;
-    flex-grow: 1;
+    flex-basis: 15%;
+    flex-grow: 4;
     padding: .05em;
     margin: 1em;
     border: 1px solid black;
     background-color: aquamarine;
     font-size: small;
     text-align: center;
+    /* flex-wrap: wrap; */
 }
