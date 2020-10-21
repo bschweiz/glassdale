@@ -1,31 +1,28 @@
+import { getCriminals, useCriminals } from './CriminalProvider.js'
+// getCriminals fetches the API, useCriminals makes a slice replica
 import { CriminalCardHTML } from "./Criminal.js"
 
-import { getCriminals, useCriminals } from './CriminalProvider.js'
 
-// getCriminals fetches the API, useCriminals makes a slice replica
-
-
-// creating a container and tying it to a class on the "document"
 const criminalsContainer = document.querySelector(".criminalsContainer");
+// creating a container and tying it to a class on the "document"
 const eventHub = document.querySelector(".container")
 
-export const CriminalList = () => {
-    // promise zone starts here
-    getCriminals().then(() => {
-        
+export const CriminalList = () => {    
+    getCriminals()
+    .then(() => {
+        const arrayFromUseCriminals = useCriminals();
         // promise fullfilled and stored to a "static" variable
-        
+        // try to implement .map() below?
         let HTMLToInsert = "";
-        const arrayToUse = useCriminals();
-        for (const criminalObj of arrayToUse) {
+        for (const criminalObj of arrayFromUseCriminals) {
             
             HTMLToInsert += CriminalCardHTML(criminalObj)
+
             criminalsContainer.innerHTML = 
-            `<h1> CRIMINALS </h1>
-            </br>
-            <p>
+            `<h1>CRIMINALS OF GLASSDALE</h1>
+            <section class="criminalsList">
             ${HTMLToInsert}
-            </p>`
+            </section>`
            
             
         }
@@ -33,16 +30,17 @@ export const CriminalList = () => {
 }
 
 eventHub.addEventListener("crimeSelected", event => {
+    console.log(event.detail.crimeThatWasChosen);
 
     const criminalsArray = useCriminals();
     console.log(criminalsArray);
+    // debugger
+    // const convictionsArray = useConvictions();
+    // console.log(convictionsArray);
 
-    const convictionsArray = useConvictions();
-    console.log(convictionsArray);
-
-    const convictionThatWasChosen = convivtionsArray.find(conctionObj => {
-        debugger
-        return convictionObj.id === event.detail.crimeThatWasChosen
-    })
+    // const convictionThatWasChosen = convivtionsArray.find(conctionObj => {
+    //     
+    //     return convictionObj.id === event.detail.crimeThatWasChosen
+    // })
 
 })

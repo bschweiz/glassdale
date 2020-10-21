@@ -11,44 +11,37 @@ const contentTarget = document.querySelector(".filters__crime")
 const eventHub = document.querySelector(".container")
 
 export const ConvictionSelect = () => {
-    // Get all convictions from application state
-    GetConvictions().then(() => {
-    const convictions = useConvictions();
-    render(convictions)    
-}
-    )}
-// "render" is a function?
+    GetConvictions()
+        .then(() => {
+            const convictions = useConvictions();
+            render(convictions)    
+    }
+)}
+
 
 const render = (convictionsCollection) => {
-    
-    /*
-        Use interpolation here to invoke the map() method on
-        the convictionsCollection to generate the option elements.
-        Look back at the example provided above.
-    */
-  
+
     contentTarget.innerHTML = `
         <select class="dropdown" id="crimeSelect">
             <option value="0">Please select a crime...</option>
             ${convictionsCollection.map(crimeObj =>  {
-                
-                    const displayCrime = crimeObj.name
-                    return `<option>${displayCrime}</option>`                    
+                    return `<option value=${crimeObj.id}>${crimeObj.name}</option>`                    
             })
         }
         </select>
     `
 }
 // Coding along below
-contentTarget.addEventListener("change", (changeEvent) => {
-    // console.log(changeEvent)
+eventHub.addEventListener("change", (changeEvent) => {
+    // console.log(changeEvent.target.value);
     if (changeEvent.target.id === "crimeSelect") {
-    const customEvent = new CustomEvent("crimeSelected", {
-        // console.log(changeEvent.target.value);
-        detail:{
-            crimeThatWasChosen: changeEvent.target.value
-        }
-    })
+
+        const customEvent = new CustomEvent ("crimeSelected", {
+            detail:{
+                crimeThatWasChosen: changeEvent.target.value
+            }
+        })
+        
     console.log(customEvent);
     eventHub.dispatchEvent(customEvent)
     }

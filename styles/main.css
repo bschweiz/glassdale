@@ -16,8 +16,9 @@ h1 {
     flex-wrap: wrap;
 }
 
-section {
-    wrap: wrap
+.criminalsList {
+    display: flex;
+    flex-wrap: wrap
 }
 
 .container {
@@ -30,12 +31,14 @@ section {
 
 .criminal ,
 .officer {
-    flex-basis: 25%;
-    flex-grow: 1;
+    flex-basis: 15%;
+    flex-grow: 4;
     padding: .05em;
     margin: 1em;
     border: 1px solid black;
     background-color: aquamarine;
     font-size: small;
     text-align: center;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
 }
