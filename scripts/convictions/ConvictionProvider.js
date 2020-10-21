@@ -8,12 +8,12 @@ export const useConvictions = () =>  convictions.slice()
 // generates an array that will be used over on ConvictionSelect.js
 // useConvictions cannot work without getConvictions, is it ASYNCHRONOUS?
 
-export const GetConvictions = () => {
+export const getConvictions = () => {
     return fetch("https://criminals.glassdale.us/crimes")
         .then(response => response.json())
         .then(
             parsedCrimes => {
-                console.table(parsedCrimes)
+                // console.table(parsedCrimes)
                 convictions = parsedCrimes
         }
     )
