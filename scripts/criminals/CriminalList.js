@@ -11,11 +11,11 @@ const criminalsContainer = document.querySelector(".criminalsContainer");
 export const CriminalList = () => {    
 
     getCriminals()
-    .then(() => {
-        const arrayFromUseCriminals = useCriminals();
-        // promise fullfilled and stored to a "static" variable
-        // try to implement .map() below?
-        render(arrayFromUseCriminals) 
+        .then(() => {
+            const arrayFromUseCriminals = useCriminals();
+            // promise fullfilled and stored to a "static" variable
+            // try to implement .map() below?
+            render(arrayFromUseCriminals) 
     }) 
 }
 

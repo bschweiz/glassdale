@@ -23,18 +23,11 @@ h1 {
     flex-wrap: wrap;
 }
 
-.criminalsList {
+.criminalsList,
+.officersList { 
     display: flex;
     flex-wrap: wrap
 }
-
-.container {
-    /* display: flex; */
-}
-/* #criminalCards{
-    
-    
-} */
 
 .criminal ,
 .officer {
@@ -46,6 +39,5 @@ h1 {
     background-color: aquamarine;
     font-size: small;
     text-align: center;
-    /* display: flex; */
     /* flex-wrap: wrap; */
 }

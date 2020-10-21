@@ -32,7 +32,7 @@ const render = (convictionsCollection) => {
         </select>
     `
 }
-// Coding along below
+// generating a custom event: "crimeSelected"
 eventHub.addEventListener("change", (changeEvent) => {
     // console.log(changeEvent.target.value);
     if (changeEvent.target.id === "crimeSelect") {

@@ -1,15 +1,16 @@
 import { OfficerList } from "./officers/OfficerList.js"
 import { CriminalList } from "./criminals/CriminalList.js"
-import { useConvictions } from "./convictions/ConvictionProvider.js"
 import { ConvictionSelect } from "./convictions/ConvictionSelect.js";
+import { OfficerSelect } from "./officers/OfficerSelect.js";
+
 
 
 
 CriminalList();
 OfficerList();
 ConvictionSelect();
-let useConvTest = useConvictions();
-console.log(useConvTest);
+OfficerSelect();
+
 
 // GetConvictions().then(() => {
 //     const GetConvictionsTest = useConvictions();
