@@ -22,17 +22,16 @@ export const CriminalList = () => {
 const render = (criminalsArray) => {
     let criminalsHTMLRepresentations = ""
     for (const criminal of criminalsArray) {
-  
-      criminalsHTMLRepresentations += CriminalCardHTML(criminal)
-  
-      criminalsContainer.innerHTML = `
+        criminalsHTMLRepresentations += CriminalCardHTML(criminal);
+
+        criminalsContainer.innerHTML = `
             <h1>CRIMINALS OF GLASSDALE</h>
             <section class="criminalsList">
-              ${criminalsHTMLRepresentations}
+                ${criminalsHTMLRepresentations}
             </section>
-          `
+        `
     }
-  }
+}
 
 eventHub.addEventListener("crimeSelected", event => {
     if (event.detail.crimeThatWasChosen !==0) {
@@ -53,24 +52,13 @@ eventHub.addEventListener("crimeSelected", event => {
     }
 })
 
-eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
-    // if (changeEvent.target.id === "officerSelected") {
-    //     // Get the name of the selected officer
-        const selectedOfficerName = officerSelectedEventObj.detail.officerName;
-        console.log("officer array test", selectedOfficerName)
+eventHub.addEventListener("officerSelected", changeEvent => {
 
-        const criminalsArray = useCriminals();
-        console.log("criminals array test", criminalsArray)
+    const criminalsArray = useCriminals();
+    const selectedOfficerName = changeEvent.detail.officerName;
 
+    const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
+        return criminalObj.arrestingOfficer === selectedOfficerName}) 
+        console.log("see if filtering logic works", filteredCriminalsArray)
+})
 
-        // Define a custom event
-        // const customEvent = new CustomEvent("officerSelected", {
-        //     detail: {
-        //         officer: selectedOfficer
-        //     }
-        // })
-        // console.log(customEvent)
-        // // Dispatch event to event hub
-        // eventHub.dispatchEvent(customEvent)
-    }
-)
