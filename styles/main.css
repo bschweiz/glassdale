@@ -10,10 +10,17 @@ body {
     flex-wrap: wrap;
 }
 
-h1 {
+#note--note {
+    flex-wrap: wrap;
+}
+
+h1,
+.filters {
     flex-basis: 100%;
     text-align: center;
     background-color: blanchedalmond;
+    align-content: center;
+     ;
 }
 
 

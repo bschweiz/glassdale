@@ -60,5 +60,7 @@ eventHub.addEventListener("officerSelected", changeEvent => {
     const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
         return criminalObj.arrestingOfficer === selectedOfficerName}) 
         console.log("see if filtering logic works", filteredCriminalsArray)
-})
+
+        render(filteredCriminalsArray)
+    })
 
