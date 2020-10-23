@@ -7,12 +7,14 @@ import { NoteList } from "./notes/NoteList.js"
 
 
 
+
 CriminalList();
 OfficerList();
 ConvictionSelect();
 OfficerSelect();
 NoteForm();
-// NoteList();
+NoteList();
+
 
 
 // GetConvictions().then(() => {
@@ -24,7 +26,7 @@ NoteForm();
 // console.log(useConvictionsTest);
 // // logs empty array []
 // const convictionSelectTest = 
-// console.log(convictionSelectTest);
+// console.log(convictionSelectTest);ß
 // // logs undefined
 
 

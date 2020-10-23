@@ -1,6 +1,6 @@
-import { getNotes } from "./NoteProvider.js"
+import { getNotes, useNotes } from "./NoteProvider.js"
 import { NoteHTMLCard } from "./NoteHTMLConverter.js"
-const notesContainer = document.querySelector(".noteFormContainer")
+const notesContainer = document.querySelector(".noteDisplayContainer")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("noteStateChanged", () => NoteList())
@@ -8,8 +8,7 @@ eventHub.addEventListener("noteStateChanged", () => NoteList())
 export const NoteList = () => {
     getNotes()
     .then(() => {
-        const allNotes = "testforNoteList function"
-        // useNotes()
+        const allNotes = useNotes()
         render(allNotes)
     })
 }
@@ -21,10 +20,13 @@ const render = (notesArray) => {
     }
   
       notesContainer.innerHTML = `
-            <h1>NOTES OF GLASSDALE</h>
-            <section class="notesList">
-              ${notesHTMLRepresentations}
-            </section>
+          <section class="notesList">
+          <h3>NOTES OF GLASSDALE</h3>
+          <br>
+          <div class="noteCard">
+          ${notesHTMLRepresentations}
+          </div>
+          </section>
           `
-  }
-
+        }
+        
