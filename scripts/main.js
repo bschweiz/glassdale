@@ -2,6 +2,8 @@ import { OfficerList } from "./officers/OfficerList.js"
 import { CriminalList } from "./criminals/CriminalList.js"
 import { ConvictionSelect } from "./convictions/ConvictionSelect.js";
 import { OfficerSelect } from "./officers/OfficerSelect.js";
+import { NoteForm } from "./notes/NoteForm.js"
+import { NoteList } from "./notes/NoteList.js"
 
 
 
@@ -10,6 +12,9 @@ CriminalList();
 OfficerList();
 ConvictionSelect();
 OfficerSelect();
+NoteForm();
+NoteList();
+
 
 
 // GetConvictions().then(() => {
@@ -21,7 +26,7 @@ OfficerSelect();
 // console.log(useConvictionsTest);
 // // logs empty array []
 // const convictionSelectTest = 
-// console.log(convictionSelectTest);
+// console.log(convictionSelectTest);ß
 // // logs undefined
 
 
