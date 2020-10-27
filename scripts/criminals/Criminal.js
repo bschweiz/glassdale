@@ -1,19 +1,61 @@
-
+const eventHub = document.querySelector(".container")
 
 
 // id="criminal--${criminalObj.id}"
 
 export const CriminalCardHTML = (criminalObj) => {
-    return `<section class="criminal">
+    return `<section id="criminal-${criminalObj.id}" class="criminal">
     <h2 class="criminal__name">${criminalObj.name}</h2>
-        <div class="criminal__properties">
-            <p>Age: ${criminalObj.age}</p>
-            <p>Crime: ${criminalObj.conviction}</p>
-            <p>Term start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
-            <p>Term end: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
-        </div>
+    <div class="criminal__properties">
+    <p>Age: ${criminalObj.age}</p>
+    <p>Crime: ${criminalObj.conviction}</p>
+    <p>Term start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
+    <p>Term end: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
+   
+    <button id="associates--${criminalObj.id}">Associate Alibis</button>
+  
+    </div>
     </section>`
 }
+//  displayAssociates() {
+//     var x = document.getElementById("myDIV");
+//     if (x.style.display === "none") {
+//         x.style.display = "block";
+//     } else {
+//         x.style.display = "none";
+//     }
+//     }
+
+// eventHub.addEventListener("click",(eventObj) => {
+//     // split the id number off of the 
+//     const [nameOfId, criminalID] = eventObj.target.id.split("--")
+//     // check ot see if it was the button we wanted 
+//     if (eventObj.target.id.startsWith("associates--")){
+//         // renderAlibis()
+//         }
+//         console.log("tits", nameOfId,"test",criminalID)}
+// })
+eventHub.addEventListener("click",(eventObj) => {
+    // split the id number off of the 
+    const [nameOfId, criminalId] = eventObj.target.id.split("--")
+    // check ot see if it was the button we wanted 
+    if (eventObj.target.id.startsWith("associates--")){
+        console.log("name", nameOfId,"id",criminalId)
+        const alibiButtonEvent = new CustomEvent("alibiButton", {
+            detail: {
+                criminalId: criminalId
+            }
+        }) 
+        eventHub.dispatchEvent(alibiButtonEvent)
+    }
+})
+
+
+
+
+
+
+
 
 
 
