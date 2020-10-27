@@ -17,30 +17,13 @@ export const CriminalCardHTML = (criminalObj) => {
     </div>
     </section>`
 }
-//  displayAssociates() {
-//     var x = document.getElementById("myDIV");
-//     if (x.style.display === "none") {
-//         x.style.display = "block";
-//     } else {
-//         x.style.display = "none";
-//     }
-//     }
 
-// eventHub.addEventListener("click",(eventObj) => {
-//     // split the id number off of the 
-//     const [nameOfId, criminalID] = eventObj.target.id.split("--")
-//     // check ot see if it was the button we wanted 
-//     if (eventObj.target.id.startsWith("associates--")){
-//         // renderAlibis()
-//         }
-//         console.log("tits", nameOfId,"test",criminalID)}
-// })
 eventHub.addEventListener("click",(eventObj) => {
     // split the id number off of the 
     const [nameOfId, criminalId] = eventObj.target.id.split("--")
     // check ot see if it was the button we wanted 
     if (eventObj.target.id.startsWith("associates--")){
-        console.log("name", nameOfId,"id",criminalId)
+        // console.log("name", nameOfId,"id",criminalId)
         const alibiButtonEvent = new CustomEvent("alibiButton", {
             detail: {
                 criminalId: criminalId

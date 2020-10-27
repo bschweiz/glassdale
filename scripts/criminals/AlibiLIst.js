@@ -7,12 +7,12 @@ import { CriminalCardHTML } from "./Criminal.js"
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("alibiButton", (eventObj) => {
-    console.log("test of AlibiList.js", eventObj.detail.criminalId)
+    // console.log("test of AlibiList.js", eventObj.detail.criminalId)
     const criminalArray = useCriminals();
     const selectedCriminal = criminalArray.find((criminalObj) => {
         return criminalObj.id === parseInt(eventObj.detail.criminalId)
     })
-    console.log("testing selected criminal logic", selectedCriminal)
+    // console.log("testing selected criminal logic", selectedCriminal)
     renderAlibis(selectedCriminal)
 })
 
@@ -42,13 +42,13 @@ eventHub.addEventListener("click", clickEvent => {
     console.log("this is when we want to hide the Alibis", clickEvent.path[2]["id"])
     // const resetAlibiTarget = document.getElementById(`#associates--${clickEvent.path[2]["id"]}`)
     const criminalArray = useCriminals();
-    console.log(criminalArray)
+    // console.log(criminalArray)
     const [discard, number] = (clickEvent.path[2]["id"]).split("-")
-    console.log(number)
+    // console.log(number)
     const selectedCriminal = criminalArray.find((criminalObj) => {
         return criminalObj.id === parseInt(number)
     })
-    console.log("testing reset alibi criminal logic", selectedCriminal)
+    // console.log("testing reset alibi criminal logic", selectedCriminal)
     const cardTarget = document.querySelector(`#criminal-${selectedCriminal.id}`)
     let cardHTML = CriminalCardHTML(selectedCriminal)
     cardTarget.innerHTML = `${cardHTML}`
