@@ -1,4 +1,22 @@
 {
+  "criminals": [
+    {
+      "id": 1,
+      "age": 55,
+      "eyeColor": "brown",
+      "name": "Ursula",
+      "phone": "8675309",
+      "address": "The Ocean"
+    },
+    {
+      "id": 2,
+      "age": 55,
+      "eyeColor": "brown",
+      "name": "Ursula",
+      "phone": "8675309",
+      "address": "The Ocean"
+    }
+  ],
   "notes": [
     {
       "interviewDate": "10/22/20",
@@ -39,6 +57,14 @@
       "author": "Benjji",
       "note": "Good person, not guilty",
       "id": 5
+    },
+    {
+      "interviewDate": "2020-11-04",
+      "timeStamp": "Wed Nov 04 2020 15:05:33 GMT-0600 (Central Standard Time)",
+      "suspect": "My Own Mind",
+      "author": "Benjamin",
+      "note": "Just Testing to make sure that i can still upload notes within database.json/notes",
+      "id": 6
     }
   ]
 }

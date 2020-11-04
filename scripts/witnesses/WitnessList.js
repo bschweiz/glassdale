@@ -1,6 +1,8 @@
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
+
+import { CriminalList } from "../criminals/CriminalList.js";
 import { WitnessCardHTML } from "./Witness.js"
 import { getWitnesses, useWitnesses } from './WitnessDataProvider.js'
 // getOfficers fetches the API, useOfficers makes a slice replica
@@ -29,6 +31,7 @@ const render = (witnessesArray) => {
             <h1>WITNESS STATEMENTS OF GLASSDALE</h1>
             <section class="witnessesList">
               ${witnessesHTMLRepresentations}
+            <button id="hideWitnessCards">Hide Witness Statements</button> 
             </section>
           `
     }
@@ -36,5 +39,13 @@ const render = (witnessesArray) => {
 
 eventHub.addEventListener("witnessButtonClicked", event => {
     WitnessList();
-    console.log("did the witness cards replace the criminals?")
+})
+
+eventHub.addEventListener("click",(eventObj) => {
+  // const witnessCardTarget = document.querySelector(".witnessesList")
+  // let witnessesHTMLRepresentations = ""
+  if (eventObj.target.id === "hideWitnessCards"){
+    CriminalList();
+    // witnessCardTarget.innerHTML = `${witnessesHTMLRepresentations}`
+  }
 })

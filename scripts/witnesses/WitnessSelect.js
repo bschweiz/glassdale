@@ -11,7 +11,7 @@ export const WitnessSelect = () => {
 }
 
 eventHub.addEventListener("click", clickEvent => {
-    console.log (clickEvent) 
+
     if (clickEvent.target.id === "witnessButton")
     {
         const customEvent = new CustomEvent("witnessButtonClicked", {
@@ -19,7 +19,7 @@ eventHub.addEventListener("click", clickEvent => {
                 test: clickEvent
             }
         })    
-        console.log("trying to pull out just the witness name:", clickEvent.detail)
+        console.log("trying to pull out just the witness id number:", clickEvent.detail)
         eventHub.dispatchEvent(customEvent)
 }})
 
