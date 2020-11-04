@@ -1,12 +1,16 @@
-import { getWitnesses, useWitnesses } from './WitnessDataProvider.js'
-
 const eventHub = document.querySelector(".container")
+import { getWitnesses, useWitnesses } from './WitnessDataProvider.js'
+import { WitnessList } from './WitnessList.js'
+import { CriminalList } from '../criminals/CriminalList.js'
+
+
+let WitnessArrayStatic = []
 
 export const WitnessSelect = () => {
     getWitnesses()
         .then(() => {
             const WitnessArrayStatic = useWitnesses();
-            console.log(WitnessArrayStatic);    
+            return WitnessArrayStatic 
     })
 }
 
@@ -19,19 +23,19 @@ eventHub.addEventListener("click", clickEvent => {
                 test: clickEvent
             }
         })    
-        console.log("trying to pull out just the witness id number:", clickEvent.detail)
+        console.log("trying to pull out all the witness id numbers:", clickEvent)
         eventHub.dispatchEvent(customEvent)
 }})
 
-    
+eventHub.addEventListener("witnessButtonClicked", event => {
+    WitnessList();
+})
 
-// eventHub.addEventListener("change", (changeEvent) => {
-//     if (changeEvent.target.id === "officerSelect") {
-//       const officerSelectedEvent = new CustomEvent("officerSelected", {
-//         detail: {
-//           officerName: changeEvent.target.value
-//         }
-//       })
-//       console.log("OfficerSelect: Dispatch officerSelected event to event hub")
-//       eventHub.dispatchEvent(officerSelectedEvent)
-//     }
+eventHub.addEventListener("click",(eventObj) => {
+  // const witnessCardTarget = document.querySelector(".witnessesList")
+  // let witnessesHTMLRepresentations = ""
+  if (eventObj.target.id === "hideWitnessCards"){
+    CriminalList();
+    // witnessCardTarget.innerHTML = `${witnessesHTMLRepresentations}`
+  }
+})    
