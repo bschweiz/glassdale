@@ -1,7 +1,7 @@
 import { NoteForm } from "./NoteForm.js"
 
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".noteFormContainer")
+
 
 const dispatchStateChangeEvent = () => {
     const noteStateChangedEvent = new CustomEvent("noteStateChanged")
@@ -16,7 +16,7 @@ export const getNotes = () => {
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes
-            console.log(notes)
+            // console.log(notes)
         })
     }
 
@@ -60,6 +60,3 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
-// const NoteForm = () => {
-//     // rest of the code here
-// }

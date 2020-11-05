@@ -7,7 +7,7 @@ export const NoteForm = () => {
 }
 
 const render = () => {
-    contentTarget.innerHTML += `
+    contentTarget.innerHTML = `
     Date of Interview<input id="note--interviewDate" type="date"/>
     <input id="note--author" type="text" placeHolder="Your Name Here" />
     <input id="note--suspect" type="text" placeHolder="Name of Suspect Here" />
@@ -18,9 +18,6 @@ const render = () => {
     `
 }
 
-// eventHub.addEventListener("click", clickEvent => {
-//     if(clickEvent.target.id === "saveNote")    
-//         {console.log(clickEvent)}
-// })
+eventHub.addEventListener("noteStateChanged", () => NoteForm());
 
 

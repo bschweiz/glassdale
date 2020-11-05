@@ -1,5 +1,6 @@
-textarea,
-body 
+/* textarea, */
+body,
+#witness
 {
     color: #404040;
 	font-family: "Comfortaa", Arial, sans-serif;
@@ -9,16 +10,17 @@ body
 	align-content: center;
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 textarea,
-input,
+/* input, */
 button {
     margin: .5em;
+    align-content: center;
 }
 
 #note--note {
-    color:  blanchedalmond;
     margin-right: auto;
     margin-left: auto;
     height: fit-content;
@@ -38,7 +40,8 @@ h1,
 
 .noteDisplayContainer,
 .criminalsContainer,
-.officersContainer {
+.officersContainer,
+article {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -62,6 +65,7 @@ h1,
 .criminal ,
 .officer,
 h3,
+textarea,
 .noteCard,
 .note {
     flex-basis: 15%;
@@ -75,4 +79,5 @@ h3,
     flex-wrap: wrap;
     
 }
+
 
