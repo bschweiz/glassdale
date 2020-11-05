@@ -19,59 +19,14 @@
   ],
   "notes": [
     {
-      "interviewDate": "10/22/20",
-      "timeStamp": "Fri Oct 22 2020 10:17:00 GMT-0500 (Central Daylight Time)",
-      "suspect": "Sherlock Holmes",
-      "author": "Professsor Moriarty",
-      "note": "Evil genius, I respect him.",
-      "id": 1
+      "id": 1,
+      "noteText": "This is a possible suspect because she was not incarcerated at the time and had a motive.",
+      "criminalId": 5
     },
     {
-      "interviewDate": "2020-10-21",
-      "timeStamp": "Fri Oct 23 2020 14:17:00 GMT-0500 (Central Daylight Time)",
-      "suspect": "Charles Butterworth",
-      "author": "Ben",
-      "note": "seems fishy",
+      "criminalId": 6,
+      "noteText": "test number 2",
       "id": 2
-    },
-    {
-      "interviewDate": "2020-10-22",
-      "timeStamp": "Sat Oct 24 2020 14:03:07 GMT-0500 (Central Daylight Time)",
-      "suspect": "Jimbo Blank",
-      "author": "Benny Jetts",
-      "note": "Not guilty",
-      "id": 3
-    },
-    {
-      "interviewDate": "2020-10-20",
-      "timeStamp": "Sat Oct 24 2020 14:04:31 GMT-0500 (Central Daylight Time)",
-      "suspect": "Ashton",
-      "author": "Ben",
-      "note": "Guilty AF",
-      "id": 4
-    },
-    {
-      "interviewDate": "2020-10-28",
-      "timeStamp": "Mon Oct 26 2020 12:27:16 GMT-0500 (Central Daylight Time)",
-      "suspect": "Sanjee",
-      "author": "Benjji",
-      "note": "Good person, not guilty",
-      "id": 5
-    },
-    {
-      "interviewDate": "2020-11-04",
-      "timeStamp": "Wed Nov 04 2020 15:05:33 GMT-0600 (Central Standard Time)",
-      "suspect": "My Own Mind",
-      "author": "Benjamin",
-      "note": "Just Testing to make sure that i can still upload notes within database.json/notes",
-      "id": 6
     }
-  ],
-  "notes": [
-    {
-        "id": 1,
-        "noteText": "This is a possible suspect because she was not incarcerated at the time and had a motive.",
-        "criminalId": 5
-    }
-]
+  ]
 }

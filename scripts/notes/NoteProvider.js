@@ -39,18 +39,15 @@ export const saveNote = note => {
 // Handle browser-generated click event in component
 eventHub.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "saveNote") {
-        const interviewDate = (document.getElementById("note--interviewDate").value)
-        const timeStamp = Date()
-        const suspect = document.getElementById("note--suspect").value
-        const author = document.getElementById("note--author").value
+        // const interviewDate = (document.getElementById("note--interviewDate").value)
+        // const timeStamp = Date()
+        const suspect = document.getElementById("noteForm--criminal").value
+        // const author = document.getElementById("note--author").value
         const text = document.getElementById("note--note").value
         // Make a new object representation of a note
         const newNote = {
-            interviewDate: interviewDate,
-            timeStamp: timeStamp,
-            suspect: suspect,
-            author: author,
-            note: text,
+            criminalId: parseInt(suspect),
+            noteText: text,
 
             // Key/value pairs here
         }
@@ -60,3 +57,5 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
+// let suspectObj = {}
+// eventHub.addEventListener("change", suspectSelected => {

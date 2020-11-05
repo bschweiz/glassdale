@@ -1,16 +1,31 @@
+import { useCriminals } from "../criminals/CriminalProvider.js"
+
 const contentTarget = document.querySelector(".noteFormContainer")
+
 const eventHub = document.querySelector(".container")
+
+// const dropdownTarget = document.querySelector(".criminalSelect")
+
+// export const NoteForm = () => {
+//     useCriminals()
+//     .then(() => suspectSelect())
+// }
+
 
 
 export const NoteForm = () => {
-    render()
-}
+    const criminalArray = useCriminals();
+        const dropdownHTML = criminalArray.map((criminal) => {
+        return `<option value="${ criminal.id }">${criminal.name}</option>`
+            })
+            .join(" ")
 
-const render = () => {
     contentTarget.innerHTML = `
-    Date of Interview<input id="note--interviewDate" type="date"/>
-    <input id="note--author" type="text" placeHolder="Your Name Here" />
-    <input id="note--suspect" type="text" placeHolder="Name of Suspect Here" />
+    <select id="noteForm--criminal" class="criminalSelect">
+    <option value="0">Please Select a Suspect... </option>` 
+        + `${dropdownHTML}` + 
+    `
+    </select>
     <div class="textareaContainer">
         <textarea id="note--note" placeHolder="Enter Your Note Here"></textarea>
     </div>    
@@ -21,3 +36,36 @@ const render = () => {
 eventHub.addEventListener("noteStateChanged", () => NoteForm());
 
 
+
+// -----
+
+// export const suspectSelect = () => {
+//     const criminalArray = useCriminals();
+//     suspectDropdown(criminalArray)
+// }
+
+// // renders dropdown options based on the parks array
+// const suspectDropdown = (criminalArray) => {
+//     // debugger
+//     const taco = `
+//     <option value="0">Please Select a Suspect... </option>
+//     ${criminalArray
+//             .map((criminal) => {
+//                 return `<option value="${ criminal.id }">${criminal.name}</option>`
+//             })
+//             .join(" ")}
+//     `
+// }
+
+// export const pageLoad = () => {
+//     getParks()
+//       .then(() => useParks())
+//       .then(() => getAttractions())
+//       .then(() => useAttractions())
+//       .then(() => getEateries())
+//       .then(() => useEateries())
+//       .then(() => getItineraries())
+//       .then(() => useItineraries())
+//       .then(() => renderItineraries())
+//       .then(() => NashvilleWeather())
+//   }

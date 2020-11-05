@@ -6,3 +6,7 @@ export const NoteHTMLCard = (noteObj) => {
     <p>Note: ${noteObj.noteText}</p>
     </div>`
 }
+
+
+
+
