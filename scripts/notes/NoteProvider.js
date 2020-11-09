@@ -57,5 +57,10 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
-// let suspectObj = {}
-// eventHub.addEventListener("change", suspectSelected => {
+export const deleteNote = noteId => {
+    console.log(`http://localhost:8088/notes/${noteId}`);
+    return fetch(`http://localhost:8088/notes/${noteId}`, {
+        method: "DELETE"
+    })
+    .then(getNotes)
+}
