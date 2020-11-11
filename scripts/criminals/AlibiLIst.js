@@ -25,6 +25,7 @@ export const renderAlibis = (criminalObj) => {
     
         alibiContentTarget.innerHTML += `
             <section class="alibiList">
+            <div id="alibi-${criminalObj.id}">
             
             ${criminalObj.known_associates.map(alibiObj => {
                 return `
@@ -49,11 +50,14 @@ eventHub.addEventListener("click", clickEvent => {
         return criminalObj.id === parseInt(number)
     })
     // console.log("testing reset alibi criminal logic", selectedCriminal)
-    const cardTarget = document.querySelector(`#criminal-${selectedCriminal.id}`)
-    let cardHTML = CriminalCardHTML(selectedCriminal, facility)
-    cardTarget.innerHTML = `${cardHTML}`
+    const dumbID = clickEvent.path[2]["id"]
+    console.log(dumbID)
+    const cardTarget = document.querySelector(`.alibiList`)
+    
+    cardTarget.innerHTML = ""
         }
     
     })
 
 
+    // <div id="alibiNumber${alibiObj.id}></div>

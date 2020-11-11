@@ -27,11 +27,11 @@ export const CriminalList = () => {
         .then(
             () => {
                 // Pull in the data now that it has been fetched
-                const facilities = useFacilities()
-                const crimFac = useCriminalFacilities()
-                const criminals = useCriminals()
+                const facilitiesArray = useFacilities()
+                const crimFacJoinTableArray = useCriminalFacilities()
+                const criminalsArray = useCriminals()
                 // Pass all three collections of data to render()
-                render(criminals, facilities, crimFac)
+                render(criminalsArray, facilitiesArray, crimFacJoinTableArray)
             }
         )
 }
@@ -81,22 +81,28 @@ eventHub.addEventListener("crimeSelected", event => {
         console.log(convictionThatWasChosen)
         const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
             return criminalObj.conviction === convictionThatWasChosen.name
-        })
+        }
+        )
+        const fullFacilityArray = useFacilities()
+        const relationshipTableFull = useCriminalFacilities()
         // debugger
         
-        render(filteredCriminalsArray)
+        render(filteredCriminalsArray, fullFacilityArray, relationshipTableFull)
     }
 })
 
 eventHub.addEventListener("officerSelected", changeEvent => {
+    if (changeEvent.detail.crimeThatWasChosen !==0) {
+        const criminalsArray = useCriminals();
+        const selectedOfficerName = changeEvent.detail.officerName;
 
-    const criminalsArray = useCriminals();
-    const selectedOfficerName = changeEvent.detail.officerName;
-
-    const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
-        return criminalObj.arrestingOfficer === selectedOfficerName}) 
-        console.log("see if filtering logic works", filteredCriminalsArray)
-
-        render(filteredCriminalsArray)
-    })
+        const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
+            return criminalObj.arrestingOfficer === selectedOfficerName
+        }) 
+            
+        const fullFacilityArray = useFacilities()
+        const relationshipTableFull = useCriminalFacilities()
+        render(filteredCriminalsArray, fullFacilityArray, relationshipTableFull)
+    }
+})
 
