@@ -1,32 +1,19 @@
 {
-  "criminals": [
-    {
-      "id": 1,
-      "age": 55,
-      "eyeColor": "brown",
-      "name": "Ursula",
-      "phone": "8675309",
-      "address": "The Ocean"
-    },
-    {
-      "id": 2,
-      "age": 55,
-      "eyeColor": "brown",
-      "name": "Ursula",
-      "phone": "8675309",
-      "address": "The Ocean"
-    }
-  ],
   "notes": [
     {
-      "id": 1,
-      "noteText": "This is a possible suspect because she was not incarcerated at the time and had a motive.",
-      "criminalId": 5
+      "criminalId": 4,
+      "noteText": "asdff",
+      "id": 10
     },
     {
-      "criminalId": 6,
-      "noteText": "test number 2",
-      "id": 2
+      "criminalId": 4,
+      "noteText": "asdfasd",
+      "id": 13
+    },
+    {
+      "criminalId": 7,
+      "noteText": "This is a test of the note system from wednesday 11/11",
+      "id": 14
     }
   ]
 }

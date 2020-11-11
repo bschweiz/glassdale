@@ -50,7 +50,7 @@ eventHub.addEventListener("click", clickEvent => {
     })
     // console.log("testing reset alibi criminal logic", selectedCriminal)
     const cardTarget = document.querySelector(`#criminal-${selectedCriminal.id}`)
-    let cardHTML = CriminalCardHTML(selectedCriminal)
+    let cardHTML = CriminalCardHTML(selectedCriminal, facility)
     cardTarget.innerHTML = `${cardHTML}`
         }
     

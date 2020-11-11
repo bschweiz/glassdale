@@ -7,7 +7,6 @@ import { NoteList } from "./notes/NoteList.js";
 import "./criminals/AlibiLIst.js";
 import { getWitnesses } from "./witnesses/WitnessDataProvider.js";
 import { getCriminals } from "./criminals/CriminalProvider.js";
-import { WitnessList} from "./witnesses/WitnessList.js"
 import { WitnessSelect} from "./witnesses/WitnessSelect.js"
 
 

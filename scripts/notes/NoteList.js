@@ -1,4 +1,4 @@
-import { getNotes, useNotes } from "./NoteProvider.js"
+import { deleteNote, getNotes, useNotes } from "./NoteProvider.js"
 
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 const entriesContainer = document.querySelector(".noteDisplayContainer")
@@ -11,40 +11,43 @@ const render = (notesArray, criminalArray) => {
         const matchedCriminal = criminalArray.find(criminal => criminal.id === note.criminalId)
         // debugger
 
-        console.log(matchedCriminal)
-    return ` 
+        // console.log(matchedCriminal)
+        return ` 
         <div class="noteCard">
         <div class="note">
-        <h5>Note ID: ${note.id}</h5>
+        
         <p>Suspect: ${matchedCriminal.name}</p>
         <p>Note: ${note.noteText}</p>
         </div>
+        <button id="deleteBtn--${note.id}">Delete Note</button>
         </div>
         `
     })
 }
-
+{/* <h5>Note ID: ${note.id}</h5> */}
 export const NoteList = () => {
     getNotes()
         .then(getCriminals)
         .then(() => {
             const notes = useNotes()
-            const criminals = useCriminals()  
-        render(notes, criminals)
+            const criminals = useCriminals()
+            render(notes, criminals)
         })
 }
 
 
-// const render = (noteCollection, criminalCollection) => {
-//     entriesContainer.innerHTML = noteCollection.map(note => {
-//         // Find the related criminal
-//         const relatedCriminal = criminalCollection.find(criminal => criminal.id === note.criminalId)
-// console.log(relatedCriminal)
-//         return `
-//             <section class="note">
-//                 <h2>Note about ${relatedCriminal.name}</h2>
-//                 ${note.noteText}
-//             </section>
-//         `
-//     })
-// }
+eventHub.addEventListener("click", clickEvent => {
+    
+    if (clickEvent.target.id.startsWith("deleteBtn--")) {
+        const[prefix, id] = clickEvent.target.id.split("--")
+        console.log(id);
+        deleteNote(id).then(
+            () => {
+                const updatedNotes = useNotes()
+                const criminals = useCriminals()
+                render(updatedNotes, criminals)
+                }
+            )
+        }    
+    }
+)
