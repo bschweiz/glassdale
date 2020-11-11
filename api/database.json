@@ -9,6 +9,11 @@
       "criminalId": 4,
       "noteText": "asdfasd",
       "id": 13
+    },
+    {
+      "criminalId": 7,
+      "noteText": "This is a test of the note system from wednesday 11/11",
+      "id": 14
     }
   ]
 }
