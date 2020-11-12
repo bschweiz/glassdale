@@ -27,7 +27,7 @@ const render = (facilityArray, criminalArray, relationshipArray) => {
     const facilityHTMLRepresentations = facilityArray.map(
         (facilityObject) => {
             // Step 2 - Filter all relationships to get only ones for this criminal
-            const criminalRelationshipsForThisFacility = relationshipArray.filter(cf => cf.criminalId === facilityObject.id)
+            const criminalRelationshipsForThisFacility = relationshipArray.filter(cf => cf.facilityId === facilityObject.id)
             // Step 3 - Convert the relationships to facilities with map()
             const criminals = criminalRelationshipsForThisFacility.map(cf => {
                 const matchingCriminalObject = criminalArray.find(criminal => criminal.id === cf.criminalId)
