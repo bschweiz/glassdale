@@ -10,16 +10,6 @@ const eventHub = document.querySelector(".container")
 const criminalsContainer = document.querySelector(".criminalsContainer");
 // creating a container and tying it to a class on the "document"
 
-// export const CriminalListOldVersionNov11 = () => {    
-
-//     getCriminals()
-//         .then(() => {
-//             const arrayFromUseCriminals = useCriminals();
-//             // promise fullfilled and stored to a "static" variable
-//             // try to implement .map() below?
-//             render(arrayFromUseCriminals) 
-//     }) 
-// }
 export const CriminalList = () => {
     // Kick off the fetching of both collections of data
     getFacilities()

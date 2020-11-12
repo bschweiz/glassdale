@@ -4,7 +4,7 @@ const eventHub = document.querySelector(".container")
 
 // id="criminal--${criminalObj.id}"
 
-export const CriminalCardHTML = (criminalObj, facilityObj) => {
+export const CriminalCardHTML = (criminalObj, facilityArray) => {
     return `<section id="criminal-${criminalObj.id}" class="criminal">
     <h2 class="criminal__name">${criminalObj.name}</h2>
     <div class="criminal__properties">
@@ -12,7 +12,7 @@ export const CriminalCardHTML = (criminalObj, facilityObj) => {
     <p>Crime: ${criminalObj.conviction}</p>
     <p>Term start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
     <p>Term end: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
-    <button id="associates--${criminalObj.id}">Associate Alibis</button>
+    <button id="associates--${criminalObj.id}">Toggle Alibis</button>
     </div>
 
     <div id="alibiShow-${criminalObj.id}" class="hideIt">
@@ -26,7 +26,7 @@ export const CriminalCardHTML = (criminalObj, facilityObj) => {
     
     <h2>Facilities</h2>
         <div>
-            ${facilityObj.map(unit => `<p>${unit.facilityName}</p>`).join("")}
+            ${facilityArray.map(unit => `<p>${unit.facilityName}</p>`).join("")}
         </div>
     </section>`
 }

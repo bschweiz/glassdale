@@ -8,6 +8,8 @@ import "./criminals/AlibiLIst.js";
 import { getWitnesses } from "./witnesses/WitnessDataProvider.js";
 import { getCriminals } from "./criminals/CriminalProvider.js";
 import { WitnessSelect} from "./witnesses/WitnessSelect.js"
+import { FacilityList } from "./facilities/FacilityList.js";
+import { DisplayFacilitiesButton } from "./facilities/FacilitySelect.js";
 
 
 CriminalList();
@@ -19,7 +21,8 @@ getWitnesses();
 getCriminals()
     .then(() => NoteForm())
 NoteList()
-
+DisplayFacilitiesButton()
+// FacilityList()
 
 WitnessSelect();
 // WitnessList();
