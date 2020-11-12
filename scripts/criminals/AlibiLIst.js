@@ -6,37 +6,51 @@ import { CriminalCardHTML } from "./Criminal.js"
 
 const eventHub = document.querySelector(".container")
 
+// eventHub.addEventListener("alibiButton", (eventObj) => {
+//     // console.log("test of AlibiList.js", eventObj.detail.criminalId)
+//     const criminalArray = useCriminals();
+//     const selectedCriminal = criminalArray.find((criminalObj) => {
+//         return criminalObj.id === parseInt(eventObj.detail.criminalId)
+//     })
+//     // console.log("testing selected criminal logic", selectedCriminal)
+//     renderAlibis(selectedCriminal)
+// })
 eventHub.addEventListener("alibiButton", (eventObj) => {
-    // console.log("test of AlibiList.js", eventObj.detail.criminalId)
-    const criminalArray = useCriminals();
-    const selectedCriminal = criminalArray.find((criminalObj) => {
-        return criminalObj.id === parseInt(eventObj.detail.criminalId)
-    })
-    // console.log("testing selected criminal logic", selectedCriminal)
-    renderAlibis(selectedCriminal)
+    console.log("test of AlibiList.js, criminalId:", eventObj.detail.criminalId)
+    
+    const alibiIdToRender = eventObj.detail.criminalId
+    console.log(alibiIdToRender)
+
+    var div = document.getElementById(`alibiShow-${alibiIdToRender}`);
+    if (div.style.display !== 'block') {
+        div.style.display = 'block';
+    }
+    else {
+        div.style.display = 'none';
+    }
 })
 
 
-
-
-export const renderAlibis = (criminalObj) => {
+// export const renderAlibis = (criminalObj) => {
+//     document.querySelector(".hideIt").hidden = false;
     
-    const alibiContentTarget = document.querySelector(`#criminal-${criminalObj.id}`)
+//     // const alibiContentTarget = document.querySelector(`#criminal-${criminalObj.id}`)
     
-        alibiContentTarget.innerHTML += `
-            <section class="alibiList">
-            <div id="alibi-${criminalObj.id}">
+//     //     alibiContentTarget.innerHTML += `
+//     //         <section class="alibiList">
+//     //         <div id="alibi-${criminalObj.id}">
             
-            ${criminalObj.known_associates.map(alibiObj => {
-                return `
-                <p>Alibi Provided By:  ${alibiObj.name}</p>
-                <p>Alibi:  ${alibiObj.alibi}</p>`
-            }).join("")}
-            <button id="hideAlibis">Hide Alibis</button>
-            </section>
-            `
+//     //         ${criminalObj.known_associates.map(alibiObj => {
+//     //             return `
+//     //             <p>Alibi Provided By:  ${alibiObj.name}</p>
+//     //             <p>Alibi:  ${alibiObj.alibi}</p>`
+//     //         }).join("")}
+//     //         <button id="hideAlibis">Hide Alibis</button>
+//     //         </section>
+//     //         `
     
-}
+// }
+
 
 eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id === "hideAlibis") {

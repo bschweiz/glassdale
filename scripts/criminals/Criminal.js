@@ -1,5 +1,6 @@
+import {useCriminals, getCriminals} from "./CriminalProvider.js"
+// import {renderAlibis} from "./AlibiLIst.js"
 const eventHub = document.querySelector(".container")
-
 
 // id="criminal--${criminalObj.id}"
 
@@ -12,15 +13,26 @@ export const CriminalCardHTML = (criminalObj, facilityObj) => {
     <p>Term start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</p>
     <p>Term end: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
     <button id="associates--${criminalObj.id}">Associate Alibis</button>
-    <h2>Faciities</h2>
+    </div>
+
+    <div id="alibiShow-${criminalObj.id}" class="hideIt">
+            ${criminalObj.known_associates.map(alibiObj => {
+                return `
+                <p>Alibi Provided By:  ${alibiObj.name}</p>
+                <p>Alibi:  ${alibiObj.alibi}</p>`
+            }).join("")}
+            
+    </div>
+    
+    <h2>Facilities</h2>
         <div>
             ${facilityObj.map(unit => `<p>${unit.facilityName}</p>`).join("")}
         </div>
-    </div>
     </section>`
 }
 
 eventHub.addEventListener("click",(eventObj) => {
+    
     // split the id number off of the 
     const [nameOfId, criminalId] = eventObj.target.id.split("--")
     // check ot see if it was the button we wanted 
@@ -31,19 +43,11 @@ eventHub.addEventListener("click",(eventObj) => {
                 criminalId: criminalId
             }
         }) 
+        console.log(alibiButtonEvent)
+        
         eventHub.dispatchEvent(alibiButtonEvent)
     }
 })
-
-
-
-
-
-
-
-
-
-
 
 
 // const formatDate = (rawDate) => {
@@ -55,7 +59,6 @@ eventHub.addEventListener("click",(eventObj) => {
 // needing to fetch the API:
 
 export const makeCriminalObj = (name, age, conviction, start, end) => {
-   
     let newCriminal = {
         name, 
         age, 
@@ -63,5 +66,4 @@ export const makeCriminalObj = (name, age, conviction, start, end) => {
         incarceration: { start , end }
     }
     return newCriminal
-      
 }

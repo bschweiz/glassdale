@@ -26,6 +26,10 @@ textarea{
     min-height: 6em;
 }
 
+.hideIt {
+    display: none;
+}
+
 button {
     margin: .5em;
     align-content: center;
@@ -48,6 +52,9 @@ h1,
     padding-bottom: 1em;
 }
 
+.hideIt {
+    visibility: none;
+}
 
 .noteDisplayContainer,
 .criminalsContainer,
