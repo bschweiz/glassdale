@@ -30,6 +30,7 @@ export const NoteForm = () => {
         <textarea id="note--note" placeHolder="Enter Your Note Here"></textarea>
     </div>    
     <button id="saveNote">Save Note</button>
+    <br>
     `
 }
 

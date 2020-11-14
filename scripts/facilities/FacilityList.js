@@ -1,7 +1,7 @@
 import { getFacilities, useFacilities } from './FacilityProvider.js'
 import { FacilityCardHTML } from "./Facility.js";
 import { getCriminalFacilities, useCriminalFacilities } from './CriminalFacilityProvider.js';
-import { useCriminals } from '../criminals/CriminalProvider.js'
+import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
 const facilityContainer = document.querySelector(".caseDataContainer");
 
 
@@ -12,37 +12,36 @@ let CrimArrayStatic =[]
 export const FacilityList = () => {
     getFacilities()
         .then(getCriminalFacilities)
+        .then(getCriminals)
         .then(
             () => {
-            const FacilityArrayStatic = useFacilities()
-            const CrimFacReltionshipArray = useCriminalFacilities()
-            const CrimArrayStatic = useCriminals()
-            render(FacilityArrayStatic, CrimArrayStatic, CrimFacReltionshipArray)
+            FacilityArrayStatic = useFacilities()
+            CrimFacReltionshipArray = useCriminalFacilities()
+            CrimArrayStatic = useCriminals()
+            console.log("FacilityList called")
+            render()
         })
 }
 
-const render = (facilityArray, criminalArray, relationshipArray) => {
-   
-    // Step 1 - Iterate all criminals
-    const facilityHTMLRepresentations = facilityArray.map(
+const render = () => {
+    let facilitiesHTMLRepresentations = ""
+    // Step 1 - Iterate all the facilities via map
+    FacilityArrayStatic.map(
         (facilityObject) => {
             // Step 2 - Filter all relationships to get only ones for this criminal
-            const criminalRelationshipsForThisFacility = relationshipArray.filter(cf => cf.facilityId === facilityObject.id)
+            const criminalRelationshipsForThisFacility = CrimFacReltionshipArray.filter(cf => cf.facilityId === facilityObject.id)
             // Step 3 - Convert the relationships to facilities with map()
-            const criminals = criminalRelationshipsForThisFacility.map(cf => {
-                const matchingCriminalObject = criminalArray.find(criminal => criminal.id === cf.criminalId)
+            const matchedCriminals = criminalRelationshipsForThisFacility.map(cf => {
+                const matchingCriminalObject = CrimArrayStatic.find(criminal => criminal.id === cf.criminalId)
                 return matchingCriminalObject
             })
-
-            // Must pass the matching facilities to the Criminal component
-            return FacilityCardHTML(facilityObject, criminals)
+            facilitiesHTMLRepresentations += FacilityCardHTML(facilityObject, matchedCriminals)
         }
-    ).join("")
-    
+    )
     facilityContainer.innerHTML = `
             <h1>INCARCERATION FACILITIES OF GLASSDALE</h1>
             <section class="facilitiesList">
-                ${facilityHTMLRepresentations}
+                ${facilitiesHTMLRepresentations}
             <button id="hideFacilityCards">Hide Facilities</button> 
             </section>
             `

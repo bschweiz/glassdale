@@ -27,6 +27,7 @@ export const CriminalList = () => {
                 criminalsArray = useCriminals()
                 // call render which will pull from the module-scope
                 // variables 
+                console.log("CriminalList called")
                 render()
             }
         )
@@ -62,18 +63,14 @@ const render = () => {
 
 eventHub.addEventListener("crimeSelected", event => {
     if (event.detail.crimeThatWasChosen !==0) {
-
         const convictionsArray = useConvictions();
         const convictionThatWasChosen = convictionsArray.find(convictionObj => {
             return convictionObj.id === event.detail.crimeThatWasChosen
         })
-        // console.log(criminalsArray)
-        // console.log(convictionsArray)
         console.log(convictionThatWasChosen)
         const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
             return criminalObj.conviction === convictionThatWasChosen.name
-        }
-        )
+        })
         // debugger
         criminalsArray = filteredCriminalsArray
         console.log(criminalsArray)
@@ -83,15 +80,20 @@ eventHub.addEventListener("crimeSelected", event => {
 
 eventHub.addEventListener("officerSelected", changeEvent => {
     if (changeEvent.detail.crimeThatWasChosen !==0) {
-        // const criminalsArray = useCriminals();
         const selectedOfficerName = changeEvent.detail.officerName;
-
         const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
             return criminalObj.arrestingOfficer === selectedOfficerName
         }) 
         criminalsArray = filteredCriminalsArray
-        console.log(criminalsArray)
         render()
     }
 })
+
+eventHub.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "viewAllCriminals"){
+    CriminalList();
+    }
+})
+
+
 
