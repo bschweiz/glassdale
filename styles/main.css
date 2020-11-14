@@ -13,7 +13,7 @@ body,
     text-align: center;
 }
 
-textarea{
+textarea {
     flex-basis: 15%;
     flex-grow: 4;
     padding: 1em;
@@ -25,7 +25,10 @@ textarea{
     margin: .5em;
     min-height: 6em;
 }
-
+.noteDisplayContainer {
+    display: flex;
+    flex-direction: row;
+}
 .hideIt {
     display: none;
 }
@@ -42,7 +45,12 @@ button {
     width: fit-content;
 }
 
+.filersAndNotes {
+    display: flex;
+}
+
 h1,
+h2,
 .filters {
     flex-basis: 100%;
     text-align: center;
@@ -50,6 +58,8 @@ h1,
     align-content: center;
     padding-top: 1em;
     padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .hideIt {
@@ -57,7 +67,7 @@ h1,
 }
 
 .noteDisplayContainer,
-.criminalsContainer,
+.caseDataContainer,
 .officersContainer {
     display: flex;
     flex-wrap: wrap;

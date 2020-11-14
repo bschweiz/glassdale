@@ -22,7 +22,7 @@ const render = (notesArray, criminalArray) => {
         <button id="deleteBtn--${note.id}">Delete Note</button>
         </div>
         `
-    })
+    }).join("")
 }
 {/* <h5>Note ID: ${note.id}</h5> */}
 export const NoteList = () => {

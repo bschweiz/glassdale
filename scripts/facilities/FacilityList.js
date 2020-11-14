@@ -2,7 +2,7 @@ import { getFacilities, useFacilities } from './FacilityProvider.js'
 import { FacilityCardHTML } from "./Facility.js";
 import { getCriminalFacilities, useCriminalFacilities } from './CriminalFacilityProvider.js';
 import { useCriminals } from '../criminals/CriminalProvider.js'
-const facilityContainer = document.querySelector(".facilityContainer");
+const facilityContainer = document.querySelector(".caseDataContainer");
 
 
 let FacilityArrayStatic = []

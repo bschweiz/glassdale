@@ -7,61 +7,62 @@ import { getFacilities, useFacilities } from '../facilities/FacilityProvider.js'
 import { getCriminalFacilities, useCriminalFacilities } from "../facilities/CriminalFacilityProvider.js";
 
 const eventHub = document.querySelector(".container")
-const criminalsContainer = document.querySelector(".criminalsContainer");
+const caseDataContainer = document.querySelector(".caseDataContainer");
 // creating a container and tying it to a class on the "document"
+
+let facilitiesArray = []
+let crimFacJoinTableArray =[]
+let criminalsArray = []
 
 export const CriminalList = () => {
     // Kick off the fetching of both collections of data
     getFacilities()
         .then(getCriminalFacilities)
+        .then(getCriminals)
         .then(
             () => {
                 // Pull in the data now that it has been fetched
-                const facilitiesArray = useFacilities()
-                const crimFacJoinTableArray = useCriminalFacilities()
-                const criminalsArray = useCriminals()
-                // Pass all three collections of data to render()
-                render(criminalsArray, facilitiesArray, crimFacJoinTableArray)
+                facilitiesArray = useFacilities()
+                crimFacJoinTableArray = useCriminalFacilities()
+                criminalsArray = useCriminals()
+                // call render which will pull from the module-scope
+                // variables 
+                render()
             }
         )
 }
 
-const render = (criminalsToRender, allFacilities, allRelationships) => {
+const render = () => {
+    let criminalsHTMLRepresentations = ""
     // Step 1 - Iterate all criminals
-    criminalsContainer.innerHTML = criminalsToRender.map(
+    // debugger
+    criminalsArray.map(
         (criminalObject) => {
             // Step 2 - Filter all relationships to get only ones for this criminal
-            const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
+            const facilityRelationshipsForThisCriminal = crimFacJoinTableArray.filter(cf => cf.criminalId === criminalObject.id)
 
             // Step 3 - Convert the relationships to facilities with map()
-            const facilities = facilityRelationshipsForThisCriminal.map(cf => {
-                const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+            const matchedFacilities = facilityRelationshipsForThisCriminal.map(cf => {
+                const matchingFacilityObject = facilitiesArray.find(facility => facility.id === cf.facilityId)
                 return matchingFacilityObject
             })
 
-            // Must pass the matching facilities to the Criminal component
-            return CriminalCardHTML(criminalObject, facilities)
+            // Must pass the MANY matching facilities and ONE criminal object at a time
+            //  to the CriminalCardHTML function
+            criminalsHTMLRepresentations += CriminalCardHTML(criminalObject, matchedFacilities)
         }
-    ).join("")
+    )
+    caseDataContainer.innerHTML = `
+    <h2>Criminals of Glassdale</h2>
+    <section class="criminalsList">
+        ${criminalsHTMLRepresentations}
+    </section>`
 }
 
-// const renderOldVersion = (criminalsArray) => {
-//     let criminalsHTMLRepresentations = ""
-//     for (const criminal of criminalsArray) {
-//         criminalsHTMLRepresentations += CriminalCardHTML(criminal);
-
-//         criminalsContainer.innerHTML = `
-//             <h1>CRIMINALS OF GLASSDALE</h>
-//             <section class="criminalsList">
-//                 ${criminalsHTMLRepresentations}
-//             </section>
-//         `
-//     }
-// }
 
 eventHub.addEventListener("crimeSelected", event => {
     if (event.detail.crimeThatWasChosen !==0) {
-        const criminalsArray = useCriminals();
+
         const convictionsArray = useConvictions();
         const convictionThatWasChosen = convictionsArray.find(convictionObj => {
             return convictionObj.id === event.detail.crimeThatWasChosen
@@ -73,26 +74,24 @@ eventHub.addEventListener("crimeSelected", event => {
             return criminalObj.conviction === convictionThatWasChosen.name
         }
         )
-        const fullFacilityArray = useFacilities()
-        const relationshipTableFull = useCriminalFacilities()
         // debugger
-        
-        render(filteredCriminalsArray, fullFacilityArray, relationshipTableFull)
+        criminalsArray = filteredCriminalsArray
+        console.log(criminalsArray)
+        render()
     }
 })
 
 eventHub.addEventListener("officerSelected", changeEvent => {
     if (changeEvent.detail.crimeThatWasChosen !==0) {
-        const criminalsArray = useCriminals();
+        // const criminalsArray = useCriminals();
         const selectedOfficerName = changeEvent.detail.officerName;
 
         const filteredCriminalsArray = criminalsArray.filter((criminalObj) => {
             return criminalObj.arrestingOfficer === selectedOfficerName
         }) 
-            
-        const fullFacilityArray = useFacilities()
-        const relationshipTableFull = useCriminalFacilities()
-        render(filteredCriminalsArray, fullFacilityArray, relationshipTableFull)
+        criminalsArray = filteredCriminalsArray
+        console.log(criminalsArray)
+        render()
     }
 })
 

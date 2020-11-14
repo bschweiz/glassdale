@@ -13,6 +13,7 @@
     <main class="container">
         <header>
             <h1>WELCOME TO THE INTERACTIVE GLASSDALE PD WEBSITE</h1>
+            <div class="filersAndNotes">
             <div class="filters">
                 <h2>Filter Convicts By Crime</h2>
                     <div class="filter filters__crime"></div>
@@ -23,33 +24,36 @@
                     <div class="facility__button"></div>
                     <!-- <button class="facility__button">Click Here</button> -->
                 <h2>Record Investigation Notes</h2>
-                    <article class="noteFormContainer">
+                <article class="noteFormContainer">
                     <!-- notes go here  -->
-                    </article>
+                </article>
+            </div>
+                <div class="noteDisplayContainer">
+                    <h3>NOTES OF GLASSDALE</h3>
+                        <br>
+                    <section class="notesList">
+                        <!-- notes go here -->
+                    </section>
+                </div>
             </div>
         </header>
-        <h3>NOTES OF GLASSDALE</h3>
-        <br>
-            <div class="noteDisplayContainer">
-                <section class="notesList">
-                </section>
-            <!-- notes go here -->
-            </div>
-            <article class="facilityContainer"></article>
-        <article >   
-            <button><h3 id="witnessButton">Browse Witness Statements By Clicking Here</h3></button>
-            
-        <!-- </article> 
-            <article class="witnessesContainer">
-                witness statement Cards go here 
-            </article> -->
-        <article class="criminalsContainer">
-        <!-- insert criminal cards here -->
-        </article>
+        <div class="bodyContainer">
+            <article class="caseDataContainer">
+                <!-- insert criminal cards or facility cards here -->
+            </article>
+            <article >   
+                <button>
+                    <h3 id="witnessButton">Browse Witness Statements By Clicking Here</h3>
+                </button> 
+            </article> 
+                <!-- <article class="witnessesContainer">
+                    witness statement Cards go here 
+                </article> -->
         <div>
             <article class="officersContainer">
                 <!-- insert officer cards here -->
             </article>
+        </div>
         </div>
     </main>
 

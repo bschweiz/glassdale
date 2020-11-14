@@ -1,5 +1,5 @@
 
-const contentTarget = document.querySelector(".criminalsContainer")
+const contentTarget = document.querySelector(".caseDataContainer")
 
 import { WitnessCardHTML } from "./Witness.js"
 import { getWitnesses, useWitnesses } from './WitnessDataProvider.js'
